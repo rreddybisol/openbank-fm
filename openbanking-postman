@@ -1,0 +1,6518 @@
+{
+	"info": {
+		"_postman_id": "69ce50d8-c43b-49e4-89f4-0f7bf49becd7",
+		"name": "Open Banking - Build-55",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OpenID Connect",
+			"item": [
+				{
+					"name": "well-known endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "{{configEndpoint}}",
+							"host": [
+								"{{configEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client Credentials Grant (accounts scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-accounts\", jsonData.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "accounts openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client Credentials Grant (payments scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "payments openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client Credentials Grant (fundsconfirmations scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-fundsconfirmations\", jsonData.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "fundsconfirmations openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth-code Grant (get authorization code)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"authorizationCode\", responseBody);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authCodeUrl}}",
+							"host": [
+								"{{authCodeUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Code Grant (accounts scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-auth-code-grant-accounts\", jsonData.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "accounts ",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{authorizationCode}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirectUrl}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Code Grant (payments scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "payments",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{authorizationCode}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirectUrl}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Code Grant (fundsconfirmations scope)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token-from-auth-code-grant-fundsconfirmations\", jsonData.access_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicToken}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "fundsconfirmations",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{authorizationCode}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirectUrl}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tokenEndpoint}}",
+							"host": [
+								"{{tokenEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Open Banking Sequences",
+			"item": [
+				{
+					"name": "AIS Flow - UI",
+					"item": [
+						{
+							"name": "Step 1: Client Credentials Grant (accounts scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-accounts\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "accounts openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2: POST  account-access-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"account-access-consent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"request-scope\", 'accounts');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// set uuid and time",
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+											"const uuid = require('uuid');",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-accounts}}"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "Mon, 19 Oct 2018 08:51:49 GMT",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Data\": {\r\n        \"Permissions\": [\r\n            \"ReadAccountsBasic\",\r\n            \"ReadAccountsDetail\",\r\n            \"ReadBalances\",\r\n\t\t\t\"ReadBeneficiariesBasic\",\r\n\t\t\t\"ReadBeneficiariesDetail\",\r\n            \"ReadDirectDebits\",\r\n            \"ReadTransactionsBasic\",\r\n            \"ReadTransactionsCredits\",\r\n            \"ReadTransactionsDebits\",\r\n            \"ReadTransactionsDetail\",\r\n            \"ReadProducts\",\r\n            \"ReadStandingOrdersDetail\",\r\n            \"ReadProducts\",\r\n            \"ReadStandingOrdersDetail\",\r\n            \"ReadStatementsDetail\",\r\n            \"ReadParty\",\r\n            \"ReadPartyPSU\"\r\n            ],\r\n        \"TransactionFromDateTime\": \"2016-01-01T10:40:00+02:00\",\r\n        \"TransactionToDateTime\": \"2025-12-31T10:40:00+02:00\"\r\n    }, \r\n    \"Risk\": {}\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/account-access-consents",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"account-access-consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 3: GET auth-code-url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none&responseType=code",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"o3",
+										"v1.0",
+										"auth-code-url",
+										"{{intent-id}}"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{{request-scope}}"
+										},
+										{
+											"key": "alg",
+											"value": "none"
+										},
+										{
+											"key": "responseType",
+											"value": "code"
+										}
+									]
+								},
+								"description": "Execute this request and then copy the URL into a browser."
+							},
+							"response": []
+						},
+						{
+							"name": "Step 4: Auth Code Grant (accounts scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-auth-code-grant-accounts\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "accounts ",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "{{authorizationCode}}",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{redirectUrl}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								},
+								"description": "Copy the authorization code generated into the browser into the **Body** tab in the `code` parameter"
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5.1: GET accounts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"account-id\", jsonData.Data.Account[0].AccountId);",
+											"",
+											"var active = 2;",
+											"jsonData.Data.Account.forEach((val, index, arr)=>{",
+											"    if(active === index){",
+											"        postman.setEnvironmentVariable(`account-id-active`, val.AccountId)",
+											"    }",
+											"    ",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5.2: GET direct-debits",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/direct-debits",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"direct-debits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5.3: GET beneficiaries",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/beneficiaries",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"beneficiaries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5.4: GET party",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/party",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"party"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET account/{accountId}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET account/{accountId}/party",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/party",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"party"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET account/{accountId}/parties",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/parties",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"parties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET account/{accountId}/beneficiaries",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/beneficiaries",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"beneficiaries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET account/{accountId}/transactions",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/transactions?page=1.1",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"transactions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1.1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 7: GET balances",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/balances",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 8: GET balances for a single account",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/balances",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 9: GET transactions",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/transactions",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 9: GET party",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/party",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"party"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 9: GET transactions for a single account",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"pm.environment.set(\"fromBookingDateTime\", \"2017-01-01T00:00:00.000Z\")",
+											"pm.environment.set(\"toBookingDateTime\", \"2017-12-31T00:00:00.000Z\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/transactions?fromBookingDateTime={{fromBookingDateTime}}&toBookingDateTime={{toBookingDateTime}}&page=1.2",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"transactions"
+									],
+									"query": [
+										{
+											"key": "fromBookingDateTime",
+											"value": "{{fromBookingDateTime}}"
+										},
+										{
+											"key": "toBookingDateTime",
+											"value": "{{toBookingDateTime}}"
+										},
+										{
+											"key": "page",
+											"value": "1.2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 9: GET party for a single account",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/party",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"party"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 9: GET parties for a single account",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/parties",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"accounts",
+										"{{account-id}}",
+										"parties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 10: GET transactions with filters",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"pm.environment.set(\"fromBookingDateTime\", \"2017-01-01T00:00:00.000Z\")",
+											"pm.environment.set(\"toBookingDateTime\", \"2017-07-31T00:00:00.000Z\")",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/transactions?page=1.2",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"transactions"
+									],
+									"query": [
+										{
+											"key": "fromBookingDateTime",
+											"value": "{{fromBookingDateTime}}",
+											"disabled": true
+										},
+										{
+											"key": "toBookingDateTime",
+											"value": "{{toBookingDateTime}}",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1.2"
+										}
+									]
+								},
+								"description": "Change the `fromBookingDateTime` in the **Params** tab below"
+							},
+							"response": []
+						},
+						{
+							"name": "Step 11: GET account-access-consents",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const uuid = require('uuid'); ",
+											"",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-accounts}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/aisp/account-access-consents/{{account-access-consent-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"aisp",
+										"account-access-consents",
+										"{{account-access-consent-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIS Flow - SIngle Domestic Payments UI",
+					"item": [
+						{
+							"name": "Step 1: POST Client Credentials Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2: POST domestic-payment-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+											"postman.setEnvironmentVariable(\"request-scope\", 'payments');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// set uuid and time",
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+											"const uuid = require('uuid');",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+											"",
+											"var interpolate = (str) => {",
+											"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+											"    return pm.variables.get($1);",
+											"  });",
+											"}",
+											"",
+											"var options = {",
+											"  method: 'POST',",
+											"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+											"  header: mesgSigning.header,",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: request.data",
+											"  }",
+											"};",
+											"// pm.sendRequest(",
+											"//   options,",
+											"//   function (err, response) {",
+											"//     if (response.code !== 200) {",
+											"//       throw new Error('Could not generate message signature');",
+											"//     }",
+											"//     const signature = response.stream.toString('utf8');",
+											"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+											"//   }",
+											"// )",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									},
+									{
+										"key": "x-jws-signature",
+										"value": "{{signature}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Data\": {\r\n\t    \"Initiation\": {\r\n\t      \"InstructionIdentification\": \"{{randomString-1}}\",\r\n\t      \"EndToEndIdentification\": \"{{randomString-2}}\",\r\n\t      \"InstructedAmount\": {\r\n\t        \"Amount\": \"{{randomPrice}}\",\r\n\t        \"Currency\": \"GBP\"\r\n\t      },\r\n\t      \"CreditorAccount\": {\r\n\t        \"SchemeName\": \"BH.OBF.IBAN\",\r\n\t        \"Identification\": \"SA012345{{randomBankAccount}}{{randomBankAccount}}\",\r\n\t        \"Name\":\"{{randomCompanyName}}\"\r\n\t      },\r\n\t      \"RemittanceInformation\": {\r\n\t        \"Reference\": \"{{randomLoremWord}}8898\",\r\n\t        \"Unstructured\": \"{{randomCreditCardMask}} {{randomLoremWords}}\"\r\n\t      }\r\n\t    }\r\n    }, \r\n    \"Risk\": {}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payment-consents",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-payment-consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 3: GET auth-code-url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"o3",
+										"v1.0",
+										"auth-code-url",
+										"{{intent-id}}"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{{request-scope}}"
+										},
+										{
+											"key": "alg",
+											"value": "none"
+										}
+									]
+								},
+								"description": "Execute this request and then copy the URL into a browser."
+							},
+							"response": []
+						},
+						{
+							"name": "Step 4: POST Auth Code Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "{{authorizationCode}}",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{redirectUrl}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5: POST domestic-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticPaymentId);",
+											"postman.setEnvironmentVariable(\"payment-type\", 'domestic-payments');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// set uuid and time",
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+											"const uuid = require('uuid');",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+											"var interpolate = (str) => {",
+											"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+											"    return pm.variables.get($1);",
+											"  });",
+											"}",
+											"var options = {",
+											"  method: 'POST',",
+											"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+											"  header: mesgSigning.header,",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: interpolate(request.data)",
+											"  }",
+											"};",
+											"// pm.sendRequest(",
+											"//   options,",
+											"//   function (err, response) {",
+											"//     if (response.code !== 200) {",
+											"//       throw new Error('Could not generate message signature');",
+											"//     }",
+											"//     const signature = response.stream.toString('utf8');",
+											"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+											"//   }",
+											"// )",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-payments}}"
+									},
+									{
+										"key": "x-jws-signature",
+										"value": "{{signature}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Data\": {\n        \"ConsentId\": \"{{payment-consent-id}}\",\n        \"Initiation\":  {{Initiation}}\n    },\n    \"Risk\": {}\n}"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET domestic-payment-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"const uuid = require('uuid'); ",
+											"pm.environment.set(\"interactionId\", uuid.v4());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payment-consents/{{intent-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-payment-consents",
+										"{{intent-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 7: GET domestic-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"const uuid = require('uuid'); ",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments/{{payment-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-payments",
+										"{{payment-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 8: GET domestic-payments details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"const uuid = require('uuid'); ",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments/{{payment-id}}/payment-details",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-payments",
+										"{{payment-id}}",
+										"payment-details"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PIS Flow - Domestic Standing Orders UI",
+					"item": [
+						{
+							"name": "Step 1: Client Credentials Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2: POST domestic-standing-order-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+											"postman.setEnvironmentVariable(\"request-scope\", 'payments');"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n      \"Data\": {\r\n        \"Permission\": \"Create\",\r\n        \"Initiation\": {\r\n          \"Frequency\": \"EvryDay\",\r\n          \"FirstPaymentDateTime\": \"2020-10-01T13:14:25+00:00\",\r\n          \"FinalPaymentDateTime\": \"2020-10-01T13:14:25+00:00\",\r\n          \"FirstPaymentAmount\": {\r\n            \"Amount\": \"10.00\",\r\n            \"Currency\": \"GBP\"\r\n          },\r\n          \"CreditorAccount\": {\r\n            \"SchemeName\": \"SortCodeAccountNumber\",\r\n            \"Identification\": \"20202010981789\",\r\n            \"Name\": \"Dr Foo\"\r\n          }\r\n        }\r\n      },\r\n      \"Risk\": {}\r\n    }"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-order-consents",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-standing-order-consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 3: GET auth-code-url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"o3",
+										"v1.0",
+										"auth-code-url",
+										"{{intent-id}}"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{{request-scope}}"
+										},
+										{
+											"key": "alg",
+											"value": "none"
+										}
+									]
+								},
+								"description": "Execute this request and then copy the URL into a browser."
+							},
+							"response": []
+						},
+						{
+							"name": "Step 4: Auth Code Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "{{authorizationCode}}",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{redirectUrl}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5: POST domestic-standing-orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticStandingOrderId);",
+											"postman.setEnvironmentVariable(\"payment-type\", 'domestic-standing-orders');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-payments}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Data\": {\n\t\t\"ConsentId\": \"{{payment-consent-id}}\",\n\t\t\"Initiation\": {{Initiation}}\n\t},\n\t\"Risk\": {}\n}"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-standing-orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET domestic-standing-order-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-order-consents/{{intent-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-standing-order-consents",
+										"{{intent-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 7: GET domestic-standing-order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders/{{payment-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-standing-orders",
+										"{{payment-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 8: GET  domestic-standing-orders details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"const uuid = require('uuid'); ",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders/{{payment-id}}/payment-details",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-standing-orders",
+										"{{payment-id}}",
+										"payment-details"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PIS Flow - Domestic Scheduled Payments UI",
+					"item": [
+						{
+							"name": "Step 1: Client Credentials Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2: POST domestic-scheduled-payment-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+											"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+											"postman.setEnvironmentVariable(\"request-scope\", 'payments');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// set uuid and time",
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+											"const uuid = require('uuid');",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+											"var interpolate = (str) => {",
+											"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+											"    return pm.variables.get($1);",
+											"  });",
+											"}",
+											"var options = {",
+											"  method: 'POST',",
+											"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+											"  header: mesgSigning.header,",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: interpolate(request.data)",
+											"  }",
+											"};",
+											"// pm.sendRequest(",
+											"//   options,",
+											"//   function (err, response) {",
+											"//     if (response.code !== 200) {",
+											"//       throw new Error('Could not generate message signature');",
+											"//     }",
+											"//     const signature = response.stream.toString('utf8');",
+											"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+											"//   }",
+											"// )",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{interactionId}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									},
+									{
+										"key": "x-jws-signature",
+										"value": "{{signature}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"Data\": {\r\n\t\t\"Permission\": \"Create\",\r\n\t\t\"Initiation\": {\r\n\t\t\t\"RequestedExecutionDateTime\":  \"{{randomDateFuture}}\",\r\n\t\t\t\"InstructionIdentification\": \"{{randomString-1}}\",\r\n\t\t\t\"EndToEndIdentification\": \"{{randomString-2}}\",\r\n\t\t\t\"InstructedAmount\": {\r\n\t\t\t\t\"Amount\": \"{{randomPrice}}\",\r\n\t\t\t\t\"Currency\": \"GBP\"\r\n\t\t\t},\r\n\t\t\t\"CreditorAccount\": {\r\n\t\t\t\t\"SchemeName\": \"SortCodeAccountNumber\",\r\n\t\t\t\t\"Identification\": \"000000{{randomBankAccount}}\",\r\n\t\t\t\t\"Name\": \"{{randomCompanyName}}\"\r\n\t\t\t},\r\n\t\t\t\"RemittanceInformation\": {\r\n\t\t\t\t\"Reference\": \"Remitce ormation\"\r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n\t\"Risk\": {}\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-scheduled-payment-consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Headless Step 3b: GET Auth Helper",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"o3",
+										"v1.0",
+										"auth-code-url",
+										"{{intent-id}}"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "{{request-scope}}"
+										},
+										{
+											"key": "alg",
+											"value": "none"
+										}
+									]
+								},
+								"description": "Execute this request and then copy the URL into a browser."
+							},
+							"response": []
+						},
+						{
+							"name": "Step 4: Auth Code Grant (payments scope)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{basicToken}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "payments",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "{{authorizationCode}}",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{redirectUrl}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{tokenEndpoint}}",
+									"host": [
+										"{{tokenEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 5: POST domestic-scheduled-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticScheduledPaymentId);",
+											"postman.setEnvironmentVariable(\"payment-type\", 'domestic-scheduled-payments');",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// set uuid and time",
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+											"const uuid = require('uuid');",
+											"pm.environment.set(\"interactionId\", uuid.v4());",
+											"",
+											"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+											"var interpolate = (str) => {",
+											"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+											"    return pm.variables.get($1);",
+											"  });",
+											"}",
+											"var options = {",
+											"  method: 'POST',",
+											"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+											"  header: mesgSigning.header,",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: interpolate(request.data)",
+											"  }",
+											"};",
+											"// pm.sendRequest(",
+											"//   options,",
+											"//   function (err, response) {",
+											"//     if (response.code !== 200) {",
+											"//       throw new Error('Could not generate message signature');",
+											"//     }",
+											"//     const signature = response.stream.toString('utf8');",
+											"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+											"//   }",
+											"// )",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-auth-code-grant-payments}}"
+									},
+									{
+										"key": "x-jws-signature",
+										"value": "{{signature}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Data\": {\n        \"ConsentId\": \"{{payment-consent-id}}\",\n        \"Initiation\": {{Initiation}}\n    },\n    \"Risk\": {}\n}"
+								},
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payments",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-scheduled-payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 6: GET domestic-scheduled-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payments/{{payment-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-scheduled-payments",
+										"{{payment-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Step 7: GET domestic-scheduled-payment-consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-fapi-financial-id",
+										"value": "{{obParticipantId}}"
+									},
+									{
+										"key": "x-fapi-customer-last-logged-time",
+										"value": "{{now}}",
+										"disabled": true
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "10.1.1.10"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+									}
+								],
+								"url": {
+									"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/{{intent-id}}",
+									"host": [
+										"{{rs}}"
+									],
+									"path": [
+										"open-banking",
+										"v3.1",
+										"pisp",
+										"domestic-scheduled-payment-consents",
+										"{{intent-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Headless flows",
+					"item": [
+						{
+							"name": "PIS Flow - SIngle Domestic Payments Headless",
+							"item": [
+								{
+									"name": "Step 1: POST Client Credentials Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments openid",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 2: POST domestic-payment-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+													"postman.setEnvironmentVariable(\"request-scope\", 'payments');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// set uuid and time",
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+													"const uuid = require('uuid');",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+													"",
+													"var interpolate = (str) => {",
+													"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+													"    return pm.variables.get($1);",
+													"  });",
+													"}",
+													"",
+													"var options = {",
+													"  method: 'POST',",
+													"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+													"  header: mesgSigning.header,",
+													"  body: {",
+													"    mode: 'raw',",
+													"    raw: request.data",
+													"  }",
+													"};",
+													"// pm.sendRequest(",
+													"//   options,",
+													"//   function (err, response) {",
+													"//     if (response.code !== 200) {",
+													"//       throw new Error('Could not generate message signature');",
+													"//     }",
+													"//     const signature = response.stream.toString('utf8');",
+													"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+													"//   }",
+													"// )",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											},
+											{
+												"key": "x-jws-signature",
+												"value": "{{signature}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Data\": {\r\n\t    \"Initiation\": {\r\n\t      \"InstructionIdentification\": \"{{randomString-1}}\",    \r\n\t      \"EndToEndIdentification\": \"{{randomString-2}}\",\r\n\t      \"InstructedAmount\": {\r\n\t        \"Amount\": \"{{randomPrice}}\",\r\n\t        \"Currency\": \"SAR\"\r\n\t      },\r\n\t      \"CreditorAccount\": {\r\n\t        \"SchemeName\": \"BH.OBF.IBAN\",\r\n\t        \"Identification\": \"SA0000000000000000000000\",\r\n\t        \"Name\":\"{{randomCompanyName}}\"\r\n\t      },\r\n\t      \"RemittanceInformation\": {\r\n\t        \"Reference\": \"{{randomLoremWord}}8898\",\r\n\t        \"Unstructured\": \"{{randomCreditCardMask}} {{randomLoremWords}}\"\r\n\t      }\r\n\t    }\r\n    }, \r\n    \"Risk\": {}\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payment-consents",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-payment-consents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 3: GET auth-code-url",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"o3",
+												"v1.0",
+												"auth-code-url",
+												"{{intent-id}}"
+											],
+											"query": [
+												{
+													"key": "scope",
+													"value": "{{request-scope}}"
+												},
+												{
+													"key": "alg",
+													"value": "none"
+												}
+											]
+										},
+										"description": "Execute this request and then copy the URL into a browser."
+									},
+									"response": []
+								},
+								{
+									"name": "Headless Step 3b: GET Auth Helper",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"postman.setEnvironmentVariable(\"authorizationCode\", responseBody);",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{authCodeUrl}}",
+											"host": [
+												"{{authCodeUrl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 4: POST Auth Code Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "authorization_code",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "{{authorizationCode}}",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{redirectUrl}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5: POST domestic-payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticPaymentId);",
+													"postman.setEnvironmentVariable(\"payment-type\", 'domestic-payments');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// set uuid and time",
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+													"const uuid = require('uuid');",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+													"var interpolate = (str) => {",
+													"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+													"    return pm.variables.get($1);",
+													"  });",
+													"}",
+													"var options = {",
+													"  method: 'POST',",
+													"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+													"  header: mesgSigning.header,",
+													"  body: {",
+													"    mode: 'raw',",
+													"    raw: interpolate(request.data)",
+													"  }",
+													"};",
+													"// pm.sendRequest(",
+													"//   options,",
+													"//   function (err, response) {",
+													"//     if (response.code !== 200) {",
+													"//       throw new Error('Could not generate message signature');",
+													"//     }",
+													"//     const signature = response.stream.toString('utf8');",
+													"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+													"//   }",
+													"// )",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-payments}}"
+											},
+											{
+												"key": "x-jws-signature",
+												"value": "{{signature}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"Data\": {\n        \"ConsentId\": \"{{payment-consent-id}}\",\n        \"Initiation\":  {{Initiation}}\n    },\n    \"Risk\": {}\n}"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-payments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET domestic-payment-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"const uuid = require('uuid'); ",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payment-consents/{{intent-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-payment-consents",
+												"{{intent-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 7: GET domestic-payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"const uuid = require('uuid'); ",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments/{{payment-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-payments",
+												"{{payment-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 8: GET domestic-payments details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"const uuid = require('uuid'); ",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-payments/{{payment-id}}/payment-details",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-payments",
+												"{{payment-id}}",
+												"payment-details"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "PIS Flow - Domestic Standing Orders Headless",
+							"item": [
+								{
+									"name": "Step 1: Client Credentials Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments openid",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 2: POST domestic-standing-order-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+													"postman.setEnvironmentVariable(\"request-scope\", 'payments');"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": " {\r\n      \"Data\": {\r\n        \"Permission\": \"Create\",\r\n        \"Initiation\": {\r\n          \"Frequency\": \"EvryDay\",\r\n          \"FirstPaymentDateTime\": \"2020-10-01T13:14:25+00:00\",\r\n          \"FinalPaymentDateTime\": \"2020-10-01T13:14:25+00:00\",\r\n          \"FirstPaymentAmount\": {\r\n            \"Amount\": \"10.00\",\r\n            \"Currency\": \"GBP\"\r\n          },\r\n          \"CreditorAccount\": {\r\n            \"SchemeName\": \"SortCodeAccountNumber\",\r\n            \"Identification\": \"20202010981789\",\r\n            \"Name\": \"Dr Foo\"\r\n          }\r\n        }\r\n      },\r\n      \"Risk\": {}\r\n    }"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-order-consents",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-standing-order-consents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 3: GET auth-code-url",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"o3",
+												"v1.0",
+												"auth-code-url",
+												"{{intent-id}}"
+											],
+											"query": [
+												{
+													"key": "scope",
+													"value": "{{request-scope}}"
+												},
+												{
+													"key": "alg",
+													"value": "none"
+												}
+											]
+										},
+										"description": "Execute this request and then copy the URL into a browser."
+									},
+									"response": []
+								},
+								{
+									"name": "Headless Step 3b: GET Auth Helper",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"postman.setEnvironmentVariable(\"authorizationCode\", responseBody);",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{authCodeUrl}}",
+											"host": [
+												"{{authCodeUrl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 4: Auth Code Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "authorization_code",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "{{authorizationCode}}",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{redirectUrl}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5: POST domestic-standing-orders",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticStandingOrderId);",
+													"postman.setEnvironmentVariable(\"payment-type\", 'domestic-standing-orders');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-payments}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Data\": {\n\t\t\"ConsentId\": \"{{payment-consent-id}}\",\n\t\t\"Initiation\": {{Initiation}}\n\t},\n\t\"Risk\": {}\n}"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-standing-orders"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET domestic-standing-order-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-order-consents/{{intent-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-standing-order-consents",
+												"{{intent-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 7: GET domestic-standing-order",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders/{{payment-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-standing-orders",
+												"{{payment-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 8: GET  domestic-standing-orders details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"const uuid = require('uuid'); ",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-standing-orders/{{payment-id}}/payment-details",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-standing-orders",
+												"{{payment-id}}",
+												"payment-details"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "PIS Flow - Domestic Scheduled Payments Headless",
+							"item": [
+								{
+									"name": "Step 1: Client Credentials Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments openid",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 2: POST domestic-scheduled-payment-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-consent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"Initiation\", JSON.stringify(jsonData.Data.Initiation));",
+													"postman.setEnvironmentVariable(\"request-scope\", 'payments');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// set uuid and time",
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+													"const uuid = require('uuid');",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+													"var interpolate = (str) => {",
+													"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+													"    return pm.variables.get($1);",
+													"  });",
+													"}",
+													"var options = {",
+													"  method: 'POST',",
+													"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+													"  header: mesgSigning.header,",
+													"  body: {",
+													"    mode: 'raw',",
+													"    raw: interpolate(request.data)",
+													"  }",
+													"};",
+													"// pm.sendRequest(",
+													"//   options,",
+													"//   function (err, response) {",
+													"//     if (response.code !== 200) {",
+													"//       throw new Error('Could not generate message signature');",
+													"//     }",
+													"//     const signature = response.stream.toString('utf8');",
+													"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+													"//   }",
+													"// )",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											},
+											{
+												"key": "x-jws-signature",
+												"value": "{{signature}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"Data\": {\r\n\t\t\"Permission\": \"Create\",\r\n\t\t\"Initiation\": {\r\n\t\t\t\"RequestedExecutionDateTime\":  \"{{randomDateFuture}}\",\r\n\t\t\t\"InstructionIdentification\": \"{{randomString-1}}\",\r\n\t\t\t\"EndToEndIdentification\": \"{{randomString-2}}\",\r\n\t\t\t\"InstructedAmount\": {\r\n\t\t\t\t\"Amount\": \"{{randomPrice}}\",\r\n\t\t\t\t\"Currency\": \"GBP\"\r\n\t\t\t},\r\n\t\t\t\"CreditorAccount\": {\r\n\t\t\t\t\"SchemeName\": \"SortCodeAccountNumber\",\r\n\t\t\t\t\"Identification\": \"{{randomBankAccount}}\",\r\n\t\t\t\t\"Name\": \"{{randomCompanyName}}\"\r\n\t\t\t},\r\n\t\t\t\"RemittanceInformation\": {\r\n\t\t\t\t\"Reference\": \"Remitce ormation\"\r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n\t\"Risk\": {}\r\n}\r\n"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-scheduled-payment-consents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Headless Step 3b: GET Auth Helper",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"o3",
+												"v1.0",
+												"auth-code-url",
+												"{{intent-id}}"
+											],
+											"query": [
+												{
+													"key": "scope",
+													"value": "{{request-scope}}"
+												},
+												{
+													"key": "alg",
+													"value": "none"
+												}
+											]
+										},
+										"description": "Execute this request and then copy the URL into a browser."
+									},
+									"response": []
+								},
+								{
+									"name": "Step 3b: Hit /auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"postman.setEnvironmentVariable(\"authorizationCode\", responseBody);",
+													""
+												]
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{authCodeUrl}}",
+											"host": [
+												"{{authCodeUrl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 4: Auth Code Grant (payments scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-auth-code-grant-payments\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "authorization_code",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "payments",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "{{authorizationCode}}",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{redirectUrl}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5: POST domestic-scheduled-payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"payment-id\", jsonData.Data.DomesticScheduledPaymentId);",
+													"postman.setEnvironmentVariable(\"payment-type\", 'domestic-scheduled-payments');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// set uuid and time",
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+													"const uuid = require('uuid');",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"const mesgSigning = JSON.parse(pm.environment.get(\"mesgSigning\"));",
+													"var interpolate = (str) => {",
+													"  return str.replace(/{{([^}]+)}}/g, function (match, $1) {",
+													"    return pm.variables.get($1);",
+													"  });",
+													"}",
+													"var options = {",
+													"  method: 'POST',",
+													"  url: pm.environment.get('rs') + '/o3/v1.0/message-signature',",
+													"  header: mesgSigning.header,",
+													"  body: {",
+													"    mode: 'raw',",
+													"    raw: interpolate(request.data)",
+													"  }",
+													"};",
+													"// pm.sendRequest(",
+													"//   options,",
+													"//   function (err, response) {",
+													"//     if (response.code !== 200) {",
+													"//       throw new Error('Could not generate message signature');",
+													"//     }",
+													"//     const signature = response.stream.toString('utf8');",
+													"//     pm.request.headers.upsert({ key: 'x-jws-signature', value: signature })",
+													"//   }",
+													"// )",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-payments}}"
+											},
+											{
+												"key": "x-jws-signature",
+												"value": "{{signature}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"Data\": {\n        \"ConsentId\": \"{{payment-consent-id}}\",\n        \"Initiation\": {{Initiation}}\n    },\n    \"Risk\": {}\n}"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payments",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-scheduled-payments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET domestic-scheduled-payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payments/{{payment-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-scheduled-payments",
+												"{{payment-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 7: GET domestic-scheduled-payment-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString() );"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-customer-last-logged-time",
+												"value": "{{now}}",
+												"disabled": true
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "10.1.1.10"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{$guid}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-payments}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/{{intent-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"pisp",
+												"domestic-scheduled-payment-consents",
+												"{{intent-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "AIS Flow - HH",
+							"item": [
+								{
+									"name": "Step 1: Client Credentials Grant (accounts scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-client-credentials-grant-accounts\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "accounts openid",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 2: POST  account-access-consents",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"account-access-consent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"intent-id\", jsonData.Data.ConsentId);",
+													"postman.setEnvironmentVariable(\"request-scope\", 'accounts');",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// set uuid and time",
+													"postman.setEnvironmentVariable(\"now\", (new Date()).toUTCString());",
+													"const uuid = require('uuid');",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": [
+												{
+													"key": "addTokenTo",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-accounts}}"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "Mon, 19 Oct 2018 08:51:49 GMT",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Data\": {\r\n        \"Permissions\": [\r\n            \"ReadAccountsBasic\",\r\n            \"ReadAccountsDetail\",\r\n            \"ReadBalances\",\r\n\t\t\t\"ReadBeneficiariesBasic\",\r\n\t\t\t\"ReadBeneficiariesDetail\",\r\n            \"ReadDirectDebits\",\r\n            \"ReadTransactionsBasic\",\r\n            \"ReadTransactionsCredits\",\r\n            \"ReadTransactionsDebits\",\r\n            \"ReadTransactionsDetail\",\r\n            \"ReadProducts\",\r\n            \"ReadStandingOrdersDetail\",\r\n            \"ReadProducts\",\r\n            \"ReadStandingOrdersDetail\",\r\n            \"ReadStatementsDetail\",\r\n            \"ReadParty\",\r\n            \"ReadPartyPSU\"\r\n            ],\r\n        \"TransactionFromDateTime\": \"2016-01-01T10:40:00+02:00\",\r\n        \"TransactionToDateTime\": \"2025-12-31T10:40:00+02:00\"\r\n    }, \r\n    \"Risk\": {}\r\n}\r\n"
+										},
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/account-access-consents",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"account-access-consents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 3: GET auth-code-url",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"authCodeUrl\", responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/o3/v1.0/auth-code-url/{{intent-id}}?scope={{request-scope}}&alg=none&responseType=code",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"o3",
+												"v1.0",
+												"auth-code-url",
+												"{{intent-id}}"
+											],
+											"query": [
+												{
+													"key": "scope",
+													"value": "{{request-scope}}"
+												},
+												{
+													"key": "alg",
+													"value": "none"
+												},
+												{
+													"key": "responseType",
+													"value": "code"
+												}
+											]
+										},
+										"description": "Execute this request and then copy the URL into a browser."
+									},
+									"response": []
+								},
+								{
+									"name": "Step 3b: Hit /auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"postman.setEnvironmentVariable(\"authorizationCode\", responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiIsInR5cCI6IkpPU0UiLCJjdHkiOiJqc29uIiwia2lkIjoiZVVmdDNhNTV1OEhBOHZ5bkhsNWVPSWpBcTRUWUUtRXpwRHQ2WWx4Sm12OCJ9.eyJpc3MiOiJPcGVuQmFua2luZyIsInN1YiI6IjAwMTU4MDAwMDEwNDFSSEFBWSIsImF1ZCI6ImF1ZCIsImV4cCI6MTYwOTExODgyOC41ODQsImlhdCI6MTYwOTExODgxOC41ODQsIm5iZiI6MTYwOTExODgxOC41ODQsImp0aSI6ImEyOGZkNGRiLTVlYTUtNDU5OS1hNDNkLWM4ZGRkNjMyNTgzZSJ9.mzvMfwvUneEg21XuSkP0RHX0GMBbTbq-8hxZX2sWMsmxXtoh4BE4R75Tu89IW6fHJpDbZQ1K5dN88uTQGE400yhZiAs-zl5wPIVtiJmIxgFvPtPcPEDPB7RA1PCuTU853SreJKBuBBFKg0fimlcSW0cYBfXz-hG23nqEms7aPRSXGR9oU1Vg7Qt-0MVu9rhg4fuhPKOaY-vMAERzPimJuLFk2B2-b99PVCOFZiwpb3N0xIJ07keXYHG_WrVn4A4qGC0P1s_6HmIJaqHM2TEo9zWVouppvzs6iATR3BSqVlcy9jDY-sIr1xzq3iM515NyXGqP2DRNVxcML0BByvd4rg",
+												"type": "text"
+											},
+											{
+												"key": "x-cert-dn",
+												"value": "CN=HQuZPIt3ipkh33Uxytox1E,OU=0015800001041RHAAY,O=OpenBanking,C=GB",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{authCodeUrl}}",
+											"host": [
+												"{{authCodeUrl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 4: Auth Code Grant (accounts scope)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"token-from-auth-code-grant-accounts\", jsonData.access_token);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Authorization",
+												"value": "Basic {{basicToken}}"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "authorization_code",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "accounts ",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "{{authorizationCode}}",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{redirectUrl}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{tokenEndpoint}}",
+											"host": [
+												"{{tokenEndpoint}}"
+											]
+										},
+										"description": "Copy the authorization code generated into the browser into the **Body** tab in the `code` parameter"
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5.1: GET accounts",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"account-id\", jsonData.Data.Account[0].AccountId);",
+													"",
+													"var active = 2;",
+													"jsonData.Data.Account.forEach((val, index, arr)=>{",
+													"    if(active === index){",
+													"        postman.setEnvironmentVariable(`account-id-active`, val.AccountId)",
+													"    }",
+													"    ",
+													"});",
+													"",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5.2: GET direct-debits",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"postman.setEnvironmentVariable(\"account-id\", jsonData.Data.Account[0].AccountId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/direct-debits",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"direct-debits"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5.3: GET beneficiaries",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/beneficiaries",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"beneficiaries"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 5.4: GET party",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/party",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"party"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET account/{accountId}",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET account/{accountId}/party",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/party",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"party"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET account/{accountId}/parties",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/parties",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"parties"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET account/{accountId}/beneficiaries",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/beneficiaries",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"beneficiaries"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 6: GET account/{accountId}/transactions",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/transactions?page=1.1",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"transactions"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1.1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 7: GET balances",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/balances",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"balances"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 8: GET balances for a single account",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/balances",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"balances"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 9: GET transactions",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/transactions",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"transactions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 9: GET party",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/party",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"party"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 9: GET transactions for a single account",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"pm.environment.set(\"fromBookingDateTime\", \"2017-01-01T00:00:00.000Z\")",
+													"pm.environment.set(\"toBookingDateTime\", \"2017-12-31T00:00:00.000Z\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/transactions?fromBookingDateTime={{fromBookingDateTime}}&toBookingDateTime={{toBookingDateTime}}&page=1.2",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"transactions"
+											],
+											"query": [
+												{
+													"key": "fromBookingDateTime",
+													"value": "{{fromBookingDateTime}}"
+												},
+												{
+													"key": "toBookingDateTime",
+													"value": "{{toBookingDateTime}}"
+												},
+												{
+													"key": "page",
+													"value": "1.2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 9: GET party for a single account",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/party",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"party"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 9: GET parties for a single account",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/accounts/{{account-id}}/parties",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"accounts",
+												"{{account-id}}",
+												"parties"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Step 10: GET transactions with filters",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());",
+													"",
+													"pm.environment.set(\"fromBookingDateTime\", \"2017-01-01T00:00:00.000Z\")",
+													"pm.environment.set(\"toBookingDateTime\", \"2017-07-31T00:00:00.000Z\")",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-auth-code-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/transactions?page=1.2",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"transactions"
+											],
+											"query": [
+												{
+													"key": "fromBookingDateTime",
+													"value": "{{fromBookingDateTime}}",
+													"disabled": true
+												},
+												{
+													"key": "toBookingDateTime",
+													"value": "{{toBookingDateTime}}",
+													"disabled": true
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "1.2"
+												}
+											]
+										},
+										"description": "Change the `fromBookingDateTime` in the **Params** tab below"
+									},
+									"response": []
+								},
+								{
+									"name": "Step 11: GET account-access-consents",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const uuid = require('uuid'); ",
+													"",
+													"pm.environment.set(\"interactionId\", uuid.v4());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{obParticipantId}}"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token-from-client-credentials-grant-accounts}}"
+											}
+										],
+										"url": {
+											"raw": "{{rs}}/open-banking/v3.1/aisp/account-access-consents/{{account-access-consent-id}}",
+											"host": [
+												"{{rs}}"
+											],
+											"path": [
+												"open-banking",
+												"v3.1",
+												"aisp",
+												"account-access-consents",
+												"{{account-access-consent-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const userDetails = {",
+					"    psuIdentifiers: {",
+					"        userId: \"001001000000000000000002\"        ",
+					"    },",
+					"",
+					"    accountIds: [",
+					"          \"001004000000000000000002\",",
+					"          \"001004000000000000000003\",",
+					"          \"001004000000000000000005\",",
+					"          \"001004100000000000000002\",",
+					"          \"001004100000000000000003\",",
+					"          \"001004100000000000000005\"",
+					"        ]",
+					"}",
+					"",
+					"",
+					"pm.environment.set('userId',userDetails.psuIdentifiers.userId);",
+					"pm.environment.set('accountIds',JSON.stringify(userDetails.accountIds));",
+					"pm.environment.set('accountIdsPayment',JSON.stringify(userDetails.accountIds[0]));",
+					"",
+					"// Used by the message signing POSTs",
+					"pm.environment.set(\"randomString-1\", pm.variables.replaceIn(\"{{$randomPassword}}\"));",
+					"pm.environment.set(\"randomString-2\", pm.variables.replaceIn(\"{{$randomPassword}}\"));",
+					"pm.environment.set(\"randomPrice\", pm.variables.replaceIn(\"{{$randomPrice}}\"));",
+					"pm.environment.set(\"randomBankAccount\", pm.variables.replaceIn(\"{{$randomBankAccount}}\"));",
+					"pm.environment.set(\"randomFullName\", pm.variables.replaceIn(\"{{$randomFullName}}\"));",
+					"pm.environment.set(\"randomCompanyName\", pm.variables.replaceIn(\"{{$randomCompanyName}}\"));",
+					"pm.environment.set(\"randomLoremWords\", pm.variables.replaceIn(\"{{$randomLoremWords}}\"));",
+					"pm.environment.set(\"randomTransactionType\", pm.variables.replaceIn(\"{{$randomTransactionType}}\"));",
+					"pm.environment.set(\"randomLoremWords\", pm.variables.replaceIn(\"{{$randomLoremWords}}\"));",
+					"pm.environment.set(\"randomCreditCardMask\", pm.variables.replaceIn(\"{{$randomCreditCardMask}}\"));",
+					"pm.environment.set(\"randomDateFuture\", (new Date(+(new Date()) + Math.floor(Math.random()*10000000000))).toISOString());",
+					"",
+					"",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
